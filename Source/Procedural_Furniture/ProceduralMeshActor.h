@@ -43,10 +43,10 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default")
 		bool autoGenerate = false;
-	/*
+	
 	UFUNCTION(BlueprintCallable, Category = "Default")
 		void GenerateMesh();
-
+	/*
 	UFUNCTION(BlueprintCallable, Category = "Parts")
 		void GenerateCubeBasic();
 
@@ -62,10 +62,12 @@ public:
 	void ProjectUVsZAxis(TArray<ProceduralMeshVertex>& InVertices, bool worldSpace, float UVScale);
 
 	void ProjectUVsXYAxis(ProceduralMeshVertex& InVertex, bool worldSpace, float UVScale, float angle);
-
-	void GenerateMeshSection(int sectionID, FColor vertexColor, TArray<ProceduralMeshVertex>& InVertices, TArray<int32>& InTriangles);
-	void SetScale(EUnitsType EType);
 	*/
+	void GenerateMeshSection(int sectionID, FColor vertexColor, TArray<ProceduralMeshVertex>& InVertices, TArray<int32>& InTriangles);
+	
+
+	void SetScale(EUnitsType EType);
+	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

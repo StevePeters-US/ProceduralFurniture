@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "ProceduralMeshActor.h"
+#include "GameFramework/Actor.h"
 
 // https://answers.unrealengine.com/questions/142283/upgrading-old-code-to-not-use-fpostconstructinitia.html
 AProceduralMeshActor::AProceduralMeshActor(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
@@ -38,4 +39,30 @@ void AProceduralMeshActor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+void AProceduralMeshActor::GenerateMesh()
+{
+}
+
+void AProceduralMeshActor::GenerateMeshSection(int sectionID, FColor vertexColor, TArray<ProceduralMeshVertex>& InVertices, TArray<int32>& InTriangles)
+{
+	TArray<FVector> Vertices;
+	TArray<int32> Triangles;
+	TArray<FVector> Normals;
+	TArray<FVector2D> UV0;
+	TArray<FColor> VColors;
+	TArray<FProcMeshTangent> Tangents;
+	//MeshComponent->CreateMeshSection(sectionID, Vertices, Triangles, BoundingBox, false, EUpdateFrequency::Infrequent);
+	
+	//URuntimeMeshLibrary::CalculateTangentsForMesh(InVertices, InTriangles);
+	MeshComponent->CreateMeshSection(sectionID, Vertices, Triangles, Normals, UV0, VColors, Tangents, false);
+}
+
+void AProceduralMeshActor::SetScale(EUnitsType eType)
+{
+	if (eType == EUnitsType::Pro_AmericanStandard)
+	{
+		sMod = 2.54f;
+	}
 }
